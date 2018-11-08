@@ -1,0 +1,6 @@
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<jsmix = 'http://www.jahia.org/jahia/js/mix/1.0'>
+<jsnt = 'http://www.jahia.org/jahia/js/nt/1.0'>
+
+[jsnt:jsCoreApp] > jnt:content, jmix:siteComponent, jmix:droppableContent, mix:title
