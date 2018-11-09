@@ -6,6 +6,6 @@
     <bean  id="loadJavascriptAssetsFilter" class="org.jahia.modules.filter.LoadJavascriptAssetsFilter">
         <property name="priority" value="-0.5"/>
         <property name="applyOnConfigurations" value="page"/>
-        <property name="scriptLocation" value="/modules/js-core/javascript/bundles/importScript.js" />
+        <property name="scriptLocation" value="/modules/js-core/javascript/jsDependencyMappingToWebpack.js" />
     </bean>
 </beans>

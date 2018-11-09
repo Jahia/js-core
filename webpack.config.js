@@ -1,6 +1,7 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const CreateExportScriptPlugin = require('./src/main/javascript/import/CreateExportScriptPlugin');
+const ExposeWebpackRequirePlugin = require('./src/main/javascript/import/ExposeWebpackRequirePlugin');
 
 const config = {
     entry: {
@@ -44,14 +45,9 @@ const config = {
     },
     plugins: [
         new CreateExportScriptPlugin(),
+        new ExposeWebpackRequirePlugin(),
         new VueLoaderPlugin()
     ],
-
-    // optimization: {
-    //  splitChunks: {
-    //    chunks: 'all'
-    //  }
-    // },
 
     mode: "development",
     devtool: 'cheap-source-map'

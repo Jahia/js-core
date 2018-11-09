@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import AppComponent from './AppComponent.vue';
+//This exposes all dependencies of package.json to webpack
+import * as allAssets from '../import/exportedAssetsLocal';
 
 class Evaluator {
 
@@ -13,7 +15,7 @@ class Evaluator {
 
 window.runApp = () => {
     console.log("Running app");
-    fetch("/modules/vuejs-jsloader/javascript/exportedBundles/bundleExport.js").then((data) => {
+    fetch("/modules/js-extension/javascript/exportedBundles/bundleExport.js").then((data) => {
         data.text().then(function build(d)  {
             new Evaluator().evaluate(d);
         })
