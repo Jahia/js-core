@@ -23,22 +23,19 @@ class CreateExportScriptPlugin {
 
             keys.forEach(function(key, index) {
                 var imprt = "import * as " + camelCase(key) + " from \"" + key + "\"\n";
-                exportFileContents += imprt;
                 importStatementsForLocalyImportedAssets += imprt;
             });
-            exportFileContents += "\n\n";
-            exportFileContents += "window.dxJsAsset = (asset) => {\n";
-            exportFileContents += "\tconst exportedAssets = {\n";
+
+            var exportFileContentsVar = "\tconst exportedAssets = {\n";
 
             keys.forEach(function(key, index) {
-                exportFileContents += "\t\t\"" + key + "\" : " + camelCase(key) + ",\n";
+                exportFileContentsVar += "\t\t\"" + key + "\" : " + camelCase(key) + ",\n";
             });
 
-            exportFileContents += "\t};\n";
-            exportFileContents += "\treturn exportedAssets[asset];\n";
-            exportFileContents += "};";
+            exportFileContentsVar += "\t};\n";
 
-            fs.writeFileSync(path.resolve(__dirname, 'exportedAssets.js'), exportFileContents);
+            importStatementsForLocalyImportedAssets += "\n" + exportFileContentsVar;
+            importStatementsForLocalyImportedAssets += "\n export default exportedAssets;";
             fs.writeFileSync(path.resolve(__dirname, 'exportedAssetsLocal.js'), importStatementsForLocalyImportedAssets);
 
             function camelCase(str) {

@@ -6,6 +6,12 @@ var fcnName = Buffer.from('js-core').toString('base64').replace(/=/g, "");
 //to go back: Buffer.from(b64Encoded, 'base64').toString()
 
 class ExposeWebpackRequirePlugin {
+
+    constructor(entryPointFileName = "main.js", chunkNames = ["vendors"], depths = [1, 2]) {
+        this.chunkNames = chunkNames;
+        this.depths = depths;
+    }
+
     apply(compiler) {
         //Expose webpack require
         compiler.hooks.compilation.tap(
@@ -38,8 +44,10 @@ class ExposeWebpackRequirePlugin {
 
         //Create dependency mapping
         compiler.hooks.emit.tap('ExposeWebpackRequireInnerPlugin_2', compilation => {
+            console.log(compilation.chunks.length);
             compilation.chunks.forEach(chunk => {
-                if (chunk.name === "jsCore") {
+                console.log(chunk.name);
+                if (this.chunkNames.indexOf(chunk.name) !== -1) {
                     var packageJson = fs.readFileSync(path.resolve(__dirname, '../../../../package.json'), 'utf8');
                     packageJson = JSON.parse(packageJson);
                     var dependencyNames = Object.getOwnPropertyNames(packageJson.dependencies);
@@ -48,8 +56,8 @@ class ExposeWebpackRequirePlugin {
                     dependencyMapping += "\tvar exportedAssets = {\n";
                     Array.from(chunk._modules).forEach((module, index) => {
                         //depth 1 implies that this is entry point module
-                        if (module.depth === 1) {
-                            // console.log(module.depth, module.id, module.context);
+                        if (this.depths.indexOf(module.depth) !== -1) {
+                            console.log(module.depth, module.id, module.context);
                             var dependencyForContext = dependencyNames.find(name => {
                                 if (module.context && module.context.indexOf("/node_modules/") !== -1) {
                                     var pathAfterNodeModules = module.context.split("/node_modules/")[1];

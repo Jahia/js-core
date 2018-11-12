@@ -1,6 +1,6 @@
 <template>
     <div v-bind:style="styles">
-       <h1>Experimental app with DX, VueJS and Javascript Loader</h1>
+       <h1>Experimental app with DX, VueJS</h1>
        <p>{{ message }}</p>
        <p>{{ underscore }}</p>
    </div>
@@ -20,7 +20,7 @@
                     color: "#fefefe",
                     width: "100%",
                     height: "250px",
-                    backgroundImage: "url('/modules/js-core/img/road.jpg')",
+                    backgroundImage: "url('/modules/js-core/img/snow.jpg')",
                     backgroundPosition: "center",
                     backgroundPepeat: "no-repeat",
                     backgroundSize: "cover",

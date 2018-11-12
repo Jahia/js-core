@@ -21,6 +21,7 @@
 <template:addResources type="javascript" resources="bundles/jsCore.js" />
 
 <div id="appdouble"></div>
+<div id="app">Loading second app...</div>
 
 <script>
     runApp();

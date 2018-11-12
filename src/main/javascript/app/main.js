@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import AppComponent from './AppComponent.vue';
 //This exposes all dependencies of package.json to webpack
-import * as allAssets from '../import/exportedAssetsLocal';
+import Assets from '../import/exportedAssetsLocal';
 
 class Evaluator {
 

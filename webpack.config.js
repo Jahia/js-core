@@ -5,8 +5,7 @@ const ExposeWebpackRequirePlugin = require('./src/main/javascript/import/ExposeW
 
 const config = {
     entry: {
-        'jsCore': path.resolve(__dirname, 'src/main/javascript/app/main.js'),
-        'importScript': path.resolve(__dirname, 'src/main/javascript/import/exportedAssets.js')
+        'jsCore': path.resolve(__dirname, 'src/main/javascript/app/main.js')
     },
     output: {
         path: path.resolve(__dirname, 'src/main/resources/javascript/bundles/'),
@@ -49,7 +48,14 @@ const config = {
         new VueLoaderPlugin()
     ],
 
-    mode: "development",
+    optimization: {
+        splitChunks: {
+            name: "vendors",
+            chunks: "all"
+        }
+    },
+
+    // mode: "development",
     devtool: 'cheap-source-map'
 };
 
