@@ -17,11 +17,11 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <%--@elvariable id="workspace" type="java.lang.String"--%>
 
-<%--<template:addResources type="javascript" resources="bundles/vendor-bundle.js" />--%>
+<template:addResources type="javascript" resources="bundles/vendors.js" />
 <template:addResources type="javascript" resources="bundles/jsCore.js" />
 
 <div id="appdouble"></div>
-<div id="app">Loading second app...</div>
+<div id="app">Loading app...</div>
 
 <script>
     runApp();
